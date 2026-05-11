@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智慧党建平台｜博士第四党支部</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">党</div>
+          <div>
+            <h1>智慧党建平台</h1>
+            <p>物理科学学院博士第四党支部</p>
+          </div>
+        </div>
+        <nav class="nav-list" aria-label="主导航">
+          <button class="nav-item active" data-view="dashboard"><span class="nav-icon">⌂</span><span>工作总览</span></button>
+          <button class="nav-item" data-view="profile"><span class="nav-icon">☆</span><span>党员画像</span></button>
+          <button class="nav-item" data-view="learning"><span class="nav-icon">▤</span><span>分层学习</span></button>
+          <button class="nav-item" data-view="rolemodels"><span class="nav-icon">⚑</span><span>科学家精神</span></button>
+          <button class="nav-item" data-view="activities"><span class="nav-icon">◇</span><span>活动策划</span></button>
+          <button class="nav-item" data-view="cases"><span class="nav-icon">□</span><span>案例库</span></button>
+          <button class="nav-item" data-view="resources"><span class="nav-icon">↗</span><span>资源中心</span></button>
+          <button class="nav-item" data-view="ideology"><span class="nav-icon">◎</span><span>思政推送</span></button>
+          <button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span><span>数据评估</span></button>
+        </nav>
+        <div class="side-note">
+          <span>当前定位</span>
+          <strong>支部学习与活动策划工作台</strong>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">物理学科 · 研究生党建 · 学习与活动支持</p>
+            <h2 id="viewTitle">工作总览</h2>
+          </div>
+          <div class="top-actions">
+            <button class="icon-button" id="themeToggle" title="切换深浅色">◐</button>
+            <button class="primary-button" id="generateBrief">生成周报</button>
+          </div>
+        </header>
+
+        <section class="view active" id="dashboard">
+          <div class="metrics-grid">
+            <article class="metric-card"><span>可用资料来源</span><strong>14</strong><p>演示数据：均标注来源与用途</p></article>
+            <article class="metric-card"><span>分层学习任务</span><strong>36</strong><p>演示数据：按身份与偏好整理</p></article>
+            <article class="metric-card"><span>专业榜样卡</span><strong>15</strong><p>覆盖5个物理方向</p></article>
+            <article class="metric-card"><span>方案时间校验</span><strong>100%</strong><p>演示数据：生成前逐项校验</p></article>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="panel wide">
+              <div class="panel-head">
+                <div>
+                  <h3>支部学习活动工作闭环</h3>
+                  <p>不是泛泛推荐网站首页，而是把权威资料转化为学习任务、讨论问题、提交材料和归档成果。</p>
+                </div>
+                <button class="ghost-button" data-view-jump="activities">生成活动方案</button>
+              </div>
+              <div class="workflow">
+                <div><strong>资料采集</strong><span>共产党员网、学习强国、中科院、学校案例</span></div>
+                <span class="arrow">→</span>
+                <div><strong>按需推荐</strong><span>专业方向、发展身份、学习偏好</span></div>
+                <span class="arrow">→</span>
+                <div><strong>任务转化</strong><span>读什么、看什么、交什么、谁验收</span></div>
+                <span class="arrow">→</span>
+                <div><strong>归档评估</strong><span>心得、行动清单、问卷、改进记录</span></div>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head compact"><h3>本周待办</h3><span class="badge">5项</span></div>
+              <ul class="task-list" id="taskList"></ul>
+            </section>
+            <section class="panel">
+              <div class="panel-head compact"><h3>本周建议</h3><span class="badge soft">可编辑</span></div>
+              <div class="suggestion-box" id="aiSuggestion"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="profile">
+          <div class="panel wide">
+            <div class="panel-head">
+              <div>
+                <h3>党员个性化画像</h3>
+                <p>选择个人情况后，页面会给出“资料来源-学习任务-科学家案例-提交材料”的完整推荐。</p>
+              </div>
+            </div>
+            <div class="profile-form-grid four-cols">
+              <label>研究方向
+                <select id="profileMajor">
+                  <option value="theoretical">理论物理</option>
+                  <option value="particle">粒子物理与原子核物理</option>
+                  <option value="condensed">凝聚态物理</option>
+                  <option value="optics">光学</option>
+                  <option value="quantum">量子信息</option>
+                </select>
+              </label>
+              <label>发展身份
+                <select id="profileIdentity">
+                  <option value="activist">入党积极分子</option>
+                  <option value="probationary">预备党员</option>
+                  <option value="full">正式党员</option>
+                </select>
+              </label>
+              <label>学习偏好
+                <select id="profilePreference">
+                  <option value="reading">理论阅读</option>
+                  <option value="video">视频学习</option>
+                  <option value="discussion">案例研讨</option>
+                  <option value="quiz">知识竞赛</option>
+                </select>
+              </label>
+              <label>输出目标
+                <select id="profileOutput">
+                  <option value="self">个人学习</option>
+                  <option value="meeting">党会研讨</option>
+                  <option value="report">心得归档</option>
+                </select>
+              </label>
+            </div>
+            <button class="primary-button" id="generateProfile">生成个性化推荐</button>
+          </div>
+          <div id="profileResult" class="profile-result-area"></div>
+        </section>
+
+        <section class="view" id="learning">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>分层个性化学习路径</h3>
+                <p>每条学习内容都包含具体链接、学习任务、提交材料和验收方式。</p>
+              </div>
+            </div>
+            <div class="learning-filters">
+              <div class="filter-group"><span class="filter-label">发展身份</span><div class="segmented" id="identityTabs"><button class="active" data-identity="activist">积极分子</button><button data-identity="probationary">预备党员</button><button data-identity="full">正式党员</button></div></div>
+              <div class="filter-group"><span class="filter-label">学习形式</span><div class="segmented" id="modeTabs"><button class="active" data-mode="reading">理论阅读</button><button data-mode="video">视频学习</button><button data-mode="discussion">案例研讨</button><button data-mode="quiz">知识竞赛</button></div></div>
+            </div>
+            <div class="learning-grid" id="learningGrid"></div>
+          </div>
+        </section>
+
+        <section class="view" id="rolemodels">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>科学家精神案例库</h3>
+                <p>按研究方向提供权威资料、导学问题和现场任务，可直接用于主题党日、党课领学和小组研讨。</p>
+              </div>
+              <div class="segmented" id="majorTabs"><button class="active" data-major="theoretical">理论物理</button><button data-major="particle">粒子核物理</button><button data-major="condensed">凝聚态</button><button data-major="optics">光学</button><button data-major="quantum">量子信息</button></div>
+            </div>
+            <div class="rolemodel-grid" id="rolemodelGrid"></div>
+          </div>
+        </section>
+
+        <section class="view" id="activities">
+          <div class="split-layout">
+            <section class="panel form-panel">
+              <div class="panel-head compact"><h3>主题党日智能策划</h3><span class="badge">时间校验</span></div>
+              <label>主题党日题目<input type="text" id="activityTheme" value="科技报国·物理人的使命担当" /></label>
+              <label>活动目标<select id="activityGoal"><option>科研报国研讨</option><option>强化理论学习</option><option>学术诚信教育</option><option>组织生活规范</option><option>红色实践研学</option></select></label>
+              <label>参与对象<select id="activityAudience"><option>全体研究生党员、预备党员和积极分子</option><option>入党积极分子</option><option>预备党员</option><option>正式党员</option><option>混合编组</option></select></label>
+              <label>活动形式<select id="activityFormat"><option>线下集中+线上资料包</option><option>线下集中</option><option>线上会议</option><option>实地参访+研讨</option></select></label>
+              <label>活动时长<input id="activityDuration" type="range" min="45" max="120" value="60" step="15" /><span id="durationLabel">60 分钟</span></label>
+              <button class="primary-button full" id="makePlan">生成完整方案</button>
+              <button class="ghost-button full" id="copyPlan">复制方案文本</button>
+            </section>
+            <section class="panel result-panel">
+              <div class="panel-head compact"><h3>可执行活动方案</h3><span class="badge soft">含经典案例</span></div>
+              <div class="plan-output" id="planOutput"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="cases">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>经典案例库</h3>
+                <p>用于活动策划模块调用，解决“方案空、不可执行”的问题。</p>
+              </div>
+            </div>
+            <div class="case-grid" id="caseGrid"></div>
+          </div>
+        </section>
+
+        <section class="view" id="resources">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>资源中心</h3>
+                <p>按身份、类型和使用场景筛选资料，查看学习任务、提交材料和验收方式。</p>
+              </div>
+              <input class="search-box" id="resourceSearch" type="text" placeholder="搜索：党章、科技自立自强、主题党日、科学家精神" />
+            </div>
+            <div class="resource-filters">
+              <label>身份
+                <select id="resourceIdentity">
+                  <option value="">全部</option>
+                  <option value="入党积极分子">入党积极分子</option>
+                  <option value="预备党员">预备党员</option>
+                  <option value="正式党员">正式党员</option>
+                  <option value="全体">全体党员</option>
+                </select>
+              </label>
+              <label>类型
+                <select id="resourceType">
+                  <option value="">全部</option>
+                  <option value="理论">理论学习</option>
+                  <option value="党章">党章党规</option>
+                  <option value="视频">视频党课</option>
+                  <option value="主题党日">主题党日</option>
+                  <option value="科学家精神">科学家精神</option>
+                  <option value="科技自立自强">科技自立自强</option>
+                  <option value="组织生活">组织生活</option>
+                  <option value="学术诚信">学术诚信</option>
+                </select>
+              </label>
+              <label>场景
+                <select id="resourceScene">
+                  <option value="">全部</option>
+                  <option value="会前">会前预习</option>
+                  <option value="党课">党课领学</option>
+                  <option value="研讨">小组研讨</option>
+                  <option value="心得">心得撰写</option>
+                  <option value="转正">转正准备</option>
+                  <option value="策划">活动策划</option>
+                </select>
+              </label>
+            </div>
+            <div class="resource-grid" id="resourceGrid"></div>
+          </div>
+        </section>
+
+        <section class="view" id="ideology">
+          <div class="split-layout">
+            <section class="panel form-panel">
+              <div class="panel-head compact"><h3>思政推送</h3><span class="badge">图文模板</span></div>
+              <label>学生关注点<select id="ideologyTopic"><option>科研压力与成长</option><option>科技自立自强</option><option>学术诚信</option><option>就业与使命担当</option><option>科研报国精神</option></select></label>
+              <label>推送形式<select id="pushType"><option>支部群图文</option><option>公众号短推文</option><option>微党课脚本</option><option>讨论题卡</option></select></label>
+              <label>目标群体<select id="pushIdentity"><option>全体党员</option><option>入党积极分子</option><option>预备党员</option><option>正式党员</option></select></label>
+              <button class="primary-button full" id="makePush">生成推送内容</button>
+            </section>
+            <section class="panel result-panel">
+              <div class="panel-head compact"><h3>推送预览</h3><span class="badge soft">含资料链接</span></div>
+              <div class="push-preview" id="pushPreview"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="analytics">
+          <div class="analytics-layout">
+            <section class="panel"><div class="panel-head compact"><h3>教育效果评估</h3><span class="badge">示例数据</span></div><canvas id="effectChart" width="720" height="360"></canvas></section>
+            <section class="panel"><div class="panel-head compact"><h3>资料使用情况</h3><span class="badge soft">来源维度</span></div><canvas id="sourceChart" width="720" height="300"></canvas></section>
+          </div>
+          <div class="analytics-layout" style="margin-top:18px;">
+            <section class="panel"><div class="panel-head compact"><h3>反馈关键词</h3><span class="badge soft">NLP</span></div><div class="keyword-cloud"><span>链接具体</span><span>任务清楚</span><span>时间准确</span><span>资料权威</span><span>专业贴合</span><span>可归档</span><span>讨论有效</span><span>老师可点评</span></div></section>
+            <section class="panel"><div class="panel-head compact"><h3>学习偏好分布</h3><span class="badge soft">画像</span></div><canvas id="preferenceChart" width="720" height="300"></canvas></section>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
